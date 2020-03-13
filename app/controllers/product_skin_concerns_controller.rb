@@ -1,5 +1,7 @@
 class ProductSkinConcernsController < ApplicationController
   def index
+    product_skin_concerns = ProductSkinConcern.all
+    render json: product_skin_concerns
   end
 
   def create
