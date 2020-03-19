@@ -8,10 +8,10 @@ class ReviewsController < ApplicationController
   def index
     if params[:product_id]
       reviews = Review.where(product_id: params[:product_id])
-  else
+    else
       reviews = Review.all
-  end
-  render json: reviews
+    end
+    render json: reviews
   end
 
   # def create
@@ -38,11 +38,11 @@ class ReviewsController < ApplicationController
     }
   end
 
-  # def update
-  #   review = Review.find(params[:id])
-  #   review.update(review_params)
-  #   render json: review
-  # end
+  def update
+    review = Review.find(params[:id])
+    review.update(review_params)
+    render json: review
+  end
 
   # def destroy
   #   review = Review.find(params[:id])
