@@ -1,36 +1,42 @@
 class ReviewsController < ApplicationController
-
-  # def index
-  #   reviews = Review.all
-  #   render json: reviews
-  # end
-
+  
   def index
-    if params[:product_id]
-      reviews = Review.where(product_id: params[:product_id])
-    else
-      reviews = Review.all
-    end
+    reviews = Review.all
     render json: reviews
   end
+  
+  # def index
+  #   render json: Product.find(params[:product_id]).reviews
+  # end
 
+  # def index
+  #   # debugger
+  #   if params[:product_id]
+  #     reviews = Review.where(product_id: params[:product_id])
+  #   else
+  #     reviews = Review.all
+  #   end
+  #   render json: reviews
+  # end
+  
   # def create
   #   review = Review.create!(review_params)
   #   render json: review
   # end
-
-
+  
+  
   def create
+    # byebug
     review = Review.new(review_params)
     if review.save
       render json: {
         review: ReviewSerializer.new(review)
       }
     else
-        render json: review.errors.full_messages
+      render json: review.errors.full_messages
     end
   end
-
+  
   def show
     review = Review.find(params[:id])
     render json: {

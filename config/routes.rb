@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete 'reviews/:id', to: 'reviews#destroy'
   
   get 'users/', to: 'users#index'
+  get 'users/:id', to: 'users#show'
   
   get 'product_types/', to: 'product_types#index'
   
@@ -17,6 +18,10 @@ Rails.application.routes.draw do
   get 'skin_concerns/', to: 'skin_concerns#index'
   
   get 'cart_items/', to: 'cart_items#index'
+  post 'cart_items/', to: 'cart_items#create'
+  get 'cart_items/:id', to: 'cart_items#show'
+  patch 'cart_items/:id', to: 'cart_items#update'
+  delete 'cart_items/:id', to: 'cart_items#destroy'
   
   get 'product_skin_concerns/', to: 'product_skin_concerns#index'
   
