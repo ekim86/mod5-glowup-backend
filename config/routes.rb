@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'users/create', to: 'users#create'
 
   post "/login", to: "auth#login"
+  get "/auto_login", to: "auth#auto_login"
   
   get 'product_types/', to: 'product_types#index'
   

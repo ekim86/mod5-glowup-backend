@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
 
   def login
-    user = User.find_by(username: params[:username])
+    user = User.find_by(email_address: params[:email_address])
 
     if user && user.authenticate(params[:password])
       token = encode_token(user.id)
@@ -12,8 +12,7 @@ class AuthController < ApplicationController
   end
 
   def auto_login
-
-
+    debugger
     if session_user
       render json: session_user
     else 
