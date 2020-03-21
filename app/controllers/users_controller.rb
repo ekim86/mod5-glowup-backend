@@ -15,6 +15,11 @@ class UsersController < ApplicationController
   #   # end
   # end
 
+  def index
+    users = User.all
+    render json: users
+  end
+
   def create
     # let's make a user using the username and password from the params
     user = User.new(

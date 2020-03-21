@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   delete 'reviews/:id', to: 'reviews#destroy'
   
   get 'users/', to: 'users#index'
-  get 'users/:id', to: 'users#show'
+  # get 'users/:id', to: 'users#show'
+  post 'users/create', to: 'users#create'
+
+  post "/login", to: "auth#login"
   
   get 'product_types/', to: 'product_types#index'
   
