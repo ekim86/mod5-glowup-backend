@@ -1375,4 +1375,5 @@ u1 = User.create('first_name': 'Eunice', 'last_name': 'Kim', 'email_address': 'e
 u2 = User.create('first_name': 'Chris', 'last_name': 'Kim', 'email_address': 'c@email.com', 'password': '12345')
 
 r1 = Review.create('rating': 4, 'review': 'great! would buy again', 'user': User.first, 'product': Product.first)
-c1 = CartItem.create('user': User.all.first, 'product': Product.all.first)
+cart1=Cart.create('user': User.first, 'active': true)
+c1 = CartItem.create('product': Product.all.first, 'cart_id': Cart.first)
