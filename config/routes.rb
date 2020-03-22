@@ -4,10 +4,12 @@ Rails.application.routes.draw do
     get "search", on: :collection
   end
   resources :reviews, only: [:create, :destroy, :update]
-  
-  get 'users/', to: 'users#index'
-  # get 'users/:id', to: 'users#show'
-  post 'users/create', to: 'users#create'
+
+  resources :users, only: [:create] do
+    resources :carts, only: [:index, :create, :show, :update] do
+      resources :cart_items
+    end
+  end
 
   post "/login", to: "auth#login"
   get "/auto_login", to: "auth#auto_login"
@@ -17,12 +19,6 @@ Rails.application.routes.draw do
   get 'product_categories/', to: 'product_categories#index'
   
   get 'skin_concerns/', to: 'skin_concerns#index'
-  
-  get 'cart_items/', to: 'cart_items#index'
-  post 'cart_items/', to: 'cart_items#create'
-  get 'cart_items/:id', to: 'cart_items#show'
-  patch 'cart_items/:id', to: 'cart_items#update'
-  delete 'cart_items/:id', to: 'cart_items#destroy'
   
   get 'product_skin_concerns/', to: 'product_skin_concerns#index'
   

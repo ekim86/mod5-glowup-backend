@@ -13,7 +13,10 @@ class AuthController < ApplicationController
 
   def auto_login
     if session_user
-      render json: session_user
+      render json: {
+        user: session_user,
+        cart: session_user.carts.active
+      }
     else 
       render json: {errors: "That ain't no user I ever heard of!"}
     end
