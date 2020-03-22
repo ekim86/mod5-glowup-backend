@@ -12,7 +12,6 @@ class AuthController < ApplicationController
   end
 
   def auto_login
-    debugger
     if session_user
       render json: session_user
     else 
