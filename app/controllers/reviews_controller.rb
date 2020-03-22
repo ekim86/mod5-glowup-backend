@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   
   def index
-    reviews = Review.all
+    reviews = Review.where(product_id: params['product_id'])
     render json: reviews
   end
   
@@ -44,12 +44,6 @@ class ReviewsController < ApplicationController
     }
   end
 
-  def update
-    review = Review.find(params[:id])
-    review.update(review_params)
-    render json: review
-  end
-
   # def destroy
   #   review = Review.find(params[:id])
   #   review.destroy
@@ -59,9 +53,11 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find_by(id: params[:id])
     if @review.update(review_params)
-        render :show
+      render json: {
+        review: ReviewSerializer.new(review)
+      }
     else
-        render json: @review.errors.full_messages, status: 422
+      render json: @review.errors.full_messages, status: 422
     end
 end
 

@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  get 'products/', to: 'products#index'
-  get 'products/:id', to: 'products#show'
-
-  get 'reviews/', to: 'reviews#index'
-  post 'reviews/', to: 'reviews#create'
-  get 'reviews/:id', to: 'reviews#show'
-  patch 'reviews/:id', to: 'reviews#update'
-  delete 'reviews/:id', to: 'reviews#destroy'
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: [:index]
+    get "search", on: :collection
+  end
+  resources :reviews, only: [:create, :destroy, :update]
   
   get 'users/', to: 'users#index'
   # get 'users/:id', to: 'users#show'
