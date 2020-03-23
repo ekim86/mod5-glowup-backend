@@ -10,9 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class CartSerializer < ActiveModel::Serializer
+class CartItemSerializer < ActiveModel::Serializer
   attributes :id, :cart_id, :product_id, :quantity
-  belongs_to :cart,
-    class_name: 'Cart',
-    foreign_key: 'cart_id'
+  belongs_to :cart
 end

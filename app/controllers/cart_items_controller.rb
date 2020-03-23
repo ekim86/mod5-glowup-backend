@@ -27,11 +27,13 @@ class CartItemsController < ApplicationController
 	end
 
 	def update
-		@cart_item = CartItem.find_by(id: params[:id])
-		if @cart_item.update(cart_item_params)
-			render :show
+		cart_item = CartItem.find_by(id: params[:id])
+		if cart_item.update(cart_item_params)
+			render json: {
+				cartItem: CartItemSerializer.new(cart_item)
+			}
 		else
-			render json: @cart_item.errors.full_messages, status: 422
+			render json: cart_item.errors.full_messages, status: 422
 		end
 	end
 
