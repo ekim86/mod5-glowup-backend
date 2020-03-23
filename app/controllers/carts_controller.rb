@@ -9,10 +9,8 @@ class CartsController < ApplicationController
 
   def show
     cart = Cart.find(params[:id])
-    cart_items = cart.cart_items
     render json: {
-      cart: CartSerializer.new(cart),
-      cartItems: cart_items, each_serialized: CartItemSerializer
+      cart: CartSerializer.new(cart)
     }
   end
 

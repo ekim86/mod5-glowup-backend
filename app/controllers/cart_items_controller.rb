@@ -20,7 +20,7 @@ class CartItemsController < ApplicationController
 	def destroy
 		@cart_item = CartItem.find_by(id: params[:id])
 		if @cart_item.destroy 
-			render :show
+			render :index
 		else
 			render json: @cart_item.errors.full_messages, status: 422
 		end
