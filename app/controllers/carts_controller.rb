@@ -1,13 +1,18 @@
 class CartsController < ApplicationController
   def index
-    carts = Cart.where(user_id: params['user_id'])
-    render json: carts
+    @carts = Cart.where(user_id: params['user_id'])
+
+    render json: {
+      carts: @carts, root: "carts"
+    }
   end
 
   def show
     cart = Cart.find(params[:id])
+    cart_items = cart.cart_items
     render json: {
-      cart: CartSerializer.new(cart)
+      cart: CartSerializer.new(cart),
+      cartItems: cart_items, each_serialized: CartItemSerializer
     }
   end
 

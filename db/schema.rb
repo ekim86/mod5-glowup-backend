@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 2020_03_22_173544) do
   enable_extension "plpgsql"
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "product_id"
     t.integer "cart_id"
     t.integer "quantity"

@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   def show
     # byebug
     product = Product.find(params[:id])
+    # debugger
     render json: {
       product: ProductSerializer.new(product)
     }

@@ -5,28 +5,7 @@ class ReviewsController < ApplicationController
     render json: reviews
   end
   
-  # def index
-  #   render json: Product.find(params[:product_id]).reviews
-  # end
-
-  # def index
-  #   # debugger
-  #   if params[:product_id]
-  #     reviews = Review.where(product_id: params[:product_id])
-  #   else
-  #     reviews = Review.all
-  #   end
-  #   render json: reviews
-  # end
-  
-  # def create
-  #   review = Review.create!(review_params)
-  #   render json: review
-  # end
-  
-  
   def create
-    # byebug
     review = Review.new(review_params)
     if review.save
       render json: {
@@ -44,12 +23,6 @@ class ReviewsController < ApplicationController
     }
   end
 
-  # def destroy
-  #   review = Review.find(params[:id])
-  #   review.destroy
-  #   render json: review
-  # end
-
   def update
     @review = Review.find_by(id: params[:id])
     if @review.update(review_params)
@@ -59,16 +32,16 @@ class ReviewsController < ApplicationController
     else
       render json: @review.errors.full_messages, status: 422
     end
-end
+  end
 
-def destroy
+  def destroy
     @review = Review.find_by(id: params[:id])
     if @review.destroy
-        render :show
+      render :show
     else
-        render json: @review.errors.full_messages, status: 422
+      render json: @review.errors.full_messages, status: 422
     end
-end
+  end
 
   private
 
