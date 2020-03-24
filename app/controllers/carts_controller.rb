@@ -34,9 +34,14 @@ class CartsController < ApplicationController
   def update
     cart = Cart.find(params[:id])
     if cart.update(active: false)
-      render json: {
-        cart: CartSerializer.new(cart)
-      }
+      newCart = Cart.new('user_id': cart.user_id, 'active': true)
+      if newCart.save
+        render json: {
+          cart: CartSerializer.new(newCart)
+        }
+      else
+        render json: newCart.errors.full_messages
+      end
     else
       render json: cart.errors.full_messages, status: 422
     end
