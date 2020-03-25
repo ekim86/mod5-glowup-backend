@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   
   def index
-    products = Product.all
+    products = Product.all.includes(:product_type, :product_skin_concerns, :reviews, :skin_concerns)
     render json: products
   end
 
@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 
   def show
     # byebug
-    product = Product.find(params[:id])
+    product = Product.find(params[:id]).includes(:product_type)
     # debugger
     render json: {
       product: ProductSerializer.new(product)
