@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 
   def show
     # byebug
-    product = Product.find(params[:id]).includes(:product_type)
+    product = Product.find(params[:id])
     # debugger
     render json: {
       product: ProductSerializer.new(product)

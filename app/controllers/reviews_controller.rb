@@ -17,17 +17,17 @@ class ReviewsController < ApplicationController
   end
   
   def show
-    review = Review.find(params[:id]).includes(:product)
+    review = Review.find(params[:id])
     render json: {
       review: ReviewSerializer.new(review)
     }
   end
 
   def update
-    @review = Review.find(params[:id]).includes(:product)
+    @review = Review.find(params[:id])
     if @review.update(review_params)
       render json: {
-        review: ReviewSerializer.new(review)
+        review: ReviewSerializer.new(@review)
       }
     else
       render json: @review.errors.full_messages, status: 422
@@ -35,7 +35,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id]).includes(:product)
+    @review = Review.find(params[:id])
     if @review.destroy
       render json: {
         review: ReviewSerializer.new(@review)

@@ -17,42 +17,19 @@ class CartItemsController < ApplicationController
 		end
 	end
 
-	# def destroy
-	# 	@cart_item = CartItem.find_by(id: params[:id])
-	# 	if @cart_item.destroy 
-	# 		render :index
-	# 	else
-	# 		render json: @cart_item.errors.full_messages, status: 422
-	# 	end
-	# end
-
-
-	  def destroy
-    @cart_item = CartItem.find(params[:id]).includes(:product)
+	def destroy
+    @cart_item = CartItem.find(params[:id])
     if @cart_item.destroy
       render json: {
-        review: CartItemSerializer.new(@cart_item)
+        cartItem: CartItemSerializer.new(@cart_item)
       }
     else
       render json: @cart_item.errors.full_messages, status: 422
     end
-  end
-
-	# def destroy
-  #   @review = Review.find(params[:id])
-  #   if @review.destroy
-  #     render json: {
-  #       review: ReviewSerializer.new(@review)
-  #     }
-  #   else
-  #     render json: @review.errors.full_messages, status: 422
-  #   end
-  # end
-
-
-
+	end
+	
 	def update
-		cart_item = CartItem.find_by(id: params[:id]).includes(:product)
+		cart_item = CartItem.find_by(id: params[:id])
 		if cart_item.update(cart_item_params)
 			render json: {
 				cartItem: CartItemSerializer.new(cart_item)
