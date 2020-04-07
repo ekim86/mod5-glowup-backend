@@ -23,11 +23,6 @@ class UsersController < ApplicationController
 
   end
 
-  # def show
-  #   user = User.find_by(email_address: params[:id])
-  #   render json: user
-  # end
-
   private def user_params
     params.require(:user).permit(:first_name, :last_name, :email_address, :password)
   end

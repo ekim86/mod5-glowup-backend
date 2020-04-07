@@ -4,15 +4,4 @@ class ProductTypesController < ApplicationController
     render json: product_types
   end
 
-  def create
-  end
-
-  def show
-  end
-
-  def update
-  end
-
-  def destroy
-  end
 end
